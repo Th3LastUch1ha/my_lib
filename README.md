@@ -9,6 +9,8 @@ funciot used in this library:
 
 unsigned int vector_cell(int N);
 
+void userStuffing(int arr[], int N)
+
 void randomArrStuffing(int arr[], int r);
 
 void randomArrStuffingWLimits(int arr[], int r, int max, int min);
