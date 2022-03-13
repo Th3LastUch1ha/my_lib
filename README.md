@@ -25,7 +25,7 @@ void vectorPrint(int vet[], int r);      //this function prints your array
 
 void SetColor(int ForgC);      //this function is useful for the "vectorPrintWColoredIndex" function
 
-void vectorPrintWColoredIndex(int arr[], int r, int index);      //this function prints an array with 1 desired index colored (see the "colors for SetColor() func." doc.)
+void vectorPrintWColoredIndex(int arr[], int r, int index);      //this function prints an array with 1 desired index colored (see this->  https://github.com/Th3LastUch1ha/my_lib/blob/1170694f239f0d7f55c045040bfb192ae139dbb7/colors%20for%20SetColor()%20 )
 
 void basicBubbleSort(int arr[], int N);      //this function order your array with the basic vers. of Bubble Sort
 
