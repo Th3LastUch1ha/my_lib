@@ -1,7 +1,7 @@
 # my_lib
-all u need for exercise with vector
+all u need for exercises with arrays!
 
-in this library there are all you need for an exercise with array
+in this library you'll find all you need for an exercise with arrays
 
 ++++++++++++++++++++++++++++++++++++
 
@@ -25,7 +25,7 @@ void vectorPrint(int vet[], int r);      //this function prints your array
 
 void SetColor(int ForgC);      //this function is useful for the "vectorPrintWColoredIndex" function
 
-void vectorPrintWColoredIndex(int arr[], int r, int index);      //this function prints an array with 1 desired index colored
+void vectorPrintWColoredIndex(int arr[], int r, int index);      //this function prints an array with 1 desired index colored (see the "colors for SetColor() func." doc.)
 
 void basicBubbleSort(int arr[], int N);      //this function order your array with the basic vers. of Bubble Sort
 
