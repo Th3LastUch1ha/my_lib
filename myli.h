@@ -38,6 +38,15 @@ unsigned int vector_cell(int N)
     return n;
 }
 
+//funzione di riempimento del vettore con inserimento dell'utente
+void userStuffing(int arr[], int N)
+{
+    for (int i = 0; i < N; i++)
+    {
+        cin>> arr[i];
+    }
+}
+
 //funzione di riempimento randomico del vettore
 void randomArrStuffing(int arr[], int r)
 {
