@@ -1,7 +1,7 @@
 # my_lib
 all u need for exercise with vector
 
-in this library there is all you need for an exercise with array
+in this library there are all you need for an exercise with array
 
 ++++++++++++++++++++++++++++++++++++
 
