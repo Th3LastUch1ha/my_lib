@@ -1,6 +1,6 @@
 
 /*
-                                    --- INDICE: 1) RIEMPIMENTI 2) ORDINAMENTI 3)RICERCHE, SWAP, SHIFT e UTILI 4)STAMPE ---
+                                    --- INDICE: 1) RIEMPIMENTI 2) SWAP, SHIFT e UTILI 3) STAMPE 4) ORDINAMENTI 5) RICERCHE ---
 */
 
 #pragma once 
@@ -9,11 +9,18 @@
 #include <stdlib.h>
 #include <ctime>
 #include <time.h>
+#include <Windows.h>
 
 #define MAX 100
 #define MIN 1
 
 using namespace std;
+
+
+
+//                                                                  **RIEMPIMENTI**  
+
+
 
 //funzione per la grandezza del vettore
 unsigned int vector_cell(int N)
@@ -35,66 +42,159 @@ unsigned int vector_cell(int N)
 void randomArrStuffing(int arr[], int r)
 {
     srand(time(0));
-    for(int i=0; i<r; i++)
+    for (int i = 0; i < r; i++)
     {
-        arr[i]=(rand()%MAXIMUM);
+        arr[i] = (rand() % MAX);
     }
 }
 
 //funzione di riempimento randomico del vettore tra due limiti (MAX, MIN)
-void randomArrStuffingWLimits(int arr[], int r, int MAX, int MIN)
+void randomArrStuffingWLimits(int arr[], int r, int max, int min)
 {
     srand(time(0));
-    for(int i=0; i<r; i++)
+    for (int i = 0; i < r; i++)
     {
-        arr[i]=MIN+(rand()%(MAX-MIN));
+        arr[i] = min + (rand() % (max - min));
     }
 }
+
+
+
+//                                                                  **SWAP, SHIFT e UTILI**
+
+
+
+//Funzione per spostare tutti gli elementi del vettore
+void shift(int V[], int& position, int neww)
+{
+    while (position > 0 && V[position - 1] > neww)
+    {
+        V[position] = V[position - 1];
+        position--;
+    }
+}
+
+//funzione per scambiare celle vettori
+void vector_swap(int vet[], int var1, int var2)
+{
+    int temp;
+
+    temp = vet[var1];
+    vet[var1] = vet[var2];
+    vet[var2] = temp;
+
+}
+
+//funzione di estrazione randomica di un indice
+int drawIndex(int NUMS)
+{
+    int result;
+    srand(time(0));
+    result = (rand() % NUMS);
+
+    return result;
+}
+
+
+
+//                                                                             **STAMPE**
+
+
+
+//funzione di stampa del vettore
+void vectorPrint(int vet[], int r)
+{
+    cout << "\n";
+    for (int i = 0; i < r; i++)
+    {
+        cout << vet[i] << " ";
+    }
+    cout << "\n";
+}
+
+//funzione necessaria per l'implementazione della funzione a seguire (vectorPrintWColoredIndex)
+void SetColor(int ForgC)
+{
+    WORD wColor;
+    HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    if (GetConsoleScreenBufferInfo(hStdOut, &csbi))
+    {
+        wColor = (csbi.wAttributes & 0xF0) + (ForgC & 0x0F);
+        SetConsoleTextAttribute(hStdOut, wColor);
+    }
+    return;
+}
+
+//funzione di stampa del vettore con un desiderato indice colorato
+void vectorPrintWColoredIndex(int arr[], int r, int index)
+{
+    for (int i = 0; i < r; i++)
+    {
+        if (i == index)
+        {
+            SetColor(9);
+            cout << arr[i] << " ";
+            SetColor(15);
+        }
+        else
+        {
+            cout << arr[i] << " ";
+        }
+    }
+    cout << "\n";
+}
+
+
+
+//                                                                      **ORDINAMENTI**
+
+
 
 //prima implementazione basica del bubble sort
 void basicBubbleSort(int arr[], int N)
 {
-	int x, y;
-	int support;
-	for (x = 0; x < N - 1; x++)
-	{
-		for (y = 0; y < N - 1; y++)
-		{
-			if (arr[y] > arr[y + 1])
-			{
-				support = arr[y];
-				arr[y] = arr[y + 1];
-				arr[y + 1] = support;
-			}
-		}
-	}
+    int x, y;
+    int support;
+    for (x = 0; x < N - 1; x++)
+    {
+        for (y = 0; y < N - 1; y++)
+        {
+            if (arr[y] > arr[y + 1])
+            {
+                support = arr[y];
+                arr[y] = arr[y + 1];
+                arr[y + 1] = support;
+            }
+        }
+    }
 
 }
 
 //bubble sort con sentinella
 void flagBubbleSort(int arr[], int N)
 {
-	int support = 0;
-	bool flag=false;
-	int j = 0;
-	do
-	{
-		flag = false;
+    int support = 0;
+    bool flag = false;
+    int j = 0;
+    do
+    {
+        flag = false;
 
-		for (int i = 0 ; i < N - 1 - j; i++)
+        for (int i = 0; i < N - 1 - j; i++)
+        {
+            if (arr[i] > arr[i + 1])
             {
-                if (arr[i] > arr[i + 1])
-                {
 
-                    support = arr[i];
-                    arr[i] = arr[i + 1];
-                    arr[i+ 1] = support;
-                    flag = true;
+                support = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = support;
+                flag = true;
 
-                }
             }
+        }
         j++;
-	} while (flag);
+    } while (flag);
 
 }
 
@@ -211,6 +311,24 @@ void riorganization_vector(int vet[], int vet2[], int r, int pivot)
     vet2[j] = vet[pivot];
 }
 
+
+
+//                                                                     **RICERCHE**
+
+
+
+//ricerca lineare di un numero 
+int linear_search(int vet[], int n, int r)
+{
+    for (int i = 0; i < r; i++)
+    {
+        if (vet[i] == n)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
 //ricerca binaria di un numero ( modo iterativo )
 int binarySearch_iterativo(int inizio, int fine, int numero, int vet[])
 {
@@ -255,79 +373,4 @@ int binarySearch_ricorsivo(int inizio, int fine, int numero, int vet[])
         return binarySearch_ricorsivo(inizio, media - 1, numero, vet);
     }
 
-}
-
-//Funzione per spostare tutti gli elementi del vettore
-void shift(int V[], int& position, int neww)
-{
-    while (position > 0 && V[position - 1] > neww)
-    {
-        V[position] = V[position - 1];
-        position--;
-    }
-}
-
-//funzione per scambiare celle vettori
-void vector_swap(int vet[], int var1, int var2)
-{
-    int temp;
-
-    temp = vet[var1];
-    vet[var1] = vet[var2];
-    vet[var2] = temp;
-
-}
-
-//funzione di estrazione randomica di un indice
-int drawIndex(int NUMS)
-{
-    int result;
-    srand(time(0));
-    result=(rand()%NUMS);
-
-    return result;
-}
-
-//funzione di stampa del vettore
-void vectorPrint(int vet[], int r)
-{
-    cout << "\n";
-    for (int i = 0; i < r; i++)
-    {
-        cout << vet[i] << " ";
-    }
-    cout << "\n";
-}
-
-//funzione necessaria per l'implementazione della funzione a seguire (vectorPrintWColoredIndex)
-void SetColor(int ForgC)
- {
-    WORD wColor;
-    HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    if(GetConsoleScreenBufferInfo(hStdOut, &csbi))
-     {
-          wColor = (csbi.wAttributes & 0xF0) + (ForgC & 0x0F);
-          SetConsoleTextAttribute(hStdOut, wColor);
-     }
-     return;
-}
-
-//funzione di stampa del vettore con un desiderato indice colorato
-void vectorPrintWColoredIndex(int arr[], int r, int index)
-{
-    for(int i=0; i<r; i++)
-    {
-        if(i==index)
-        {
-            SetColor(9);
-            cout<<arr[i]<<" ";
-            SetColor(15);
-        }
-        else
-        {
-           cout<<arr[i]<<" ";
-        }
-    }
-    cout<<"\n";
 }
