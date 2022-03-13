@@ -1,0 +1,17 @@
+Call the function SetColor(number)
+    BLACK = 0
+    BLUE = 1
+    GREEN = 2
+    CYAN = 3
+    RED = 4
+    MAGENTA = 5
+    BROWN = 6
+    BRIGHT GREY = 7
+    DARK GREY = 8
+    BRIGHT BLUE = 9
+    BRIGHT GREEN = 10
+    BRIGHT CYAN = 11
+    BRIGHT RED = 12
+    BRIGHT MAGENTA = 13
+    YELLOW = 14
+    WHITE = 15
