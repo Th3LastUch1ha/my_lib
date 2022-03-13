@@ -3,6 +3,8 @@ all u need for exercise with vector
 
 in this library there is all you need for an exercise with array
 
+++++++++++++++++++++++++++++++++++++
+
 funciot used in this library:
 
 unsigned int vector_cell(int N);
