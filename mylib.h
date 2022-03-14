@@ -5,6 +5,7 @@
 
 #pragma once 
 
+#include <string>
 #include <iostream>
 #include <stdlib.h>
 #include <ctime>
