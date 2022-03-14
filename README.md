@@ -1,6 +1,6 @@
-#all u need for exercises with arrays!
+# all u need for exercises with arrays!
 
-#in this library you'll find all you need for an exercise with arrays
+# in this library you'll find all you need for an exercise with arrays
 
 ++++++++++++++++++++++++++++++++++++
 
