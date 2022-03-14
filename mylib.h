@@ -18,7 +18,7 @@ using namespace std;
 
 
 
-//                                                                  **RIEMPIMENTI**  
+//                                                                  **RIEMPIMENTI**
 
 
 
@@ -28,7 +28,7 @@ unsigned int vector_cell(int N)
     unsigned int n;
     do
     {
-        cout << "\ninserisci la grandezza dell'array :";
+        cout << "\nInserisci la grandezza dell'array :";
         cin >> n;
         if (n <= 0 && n > N)
         {
@@ -44,6 +44,15 @@ void userStuffing(int arr[], int N)
     for (int i = 0; i < N; i++)
     {
         cin>> arr[i];
+    }
+}
+
+//funzione di riempimento del vettore di tipo stringa con inserimento dall'utente
+void userStringArrStuffing(string arr[], int N)
+{
+    for (int i = 0; i < N; i++)
+    {
+        getline(cin,arr[i]);
     }
 }
 
@@ -104,6 +113,33 @@ int drawIndex(int NUMS)
     return result;
 }
 
+//funzione che imposta l'array nel verso opposto
+void reverse(int arr[], int N)
+{
+
+    int temp;
+
+    for(int i = 0, j = N-1; i < N/2; i++, j--)
+        {
+
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+
+        }
+}
+
+//funzione che addiziona in un terzo array due array paralleli cella per cella
+void sumParallelArray(int arr1[], int arr2[], int sumArr[], int N)
+{
+
+    for(int i=0; i<N; i++)
+    {
+        sumArr[i]=arr1[i]+arr2[i];
+    }
+
+}
+
 
 
 //                                                                             **STAMPE**
@@ -112,6 +148,17 @@ int drawIndex(int NUMS)
 
 //funzione di stampa del vettore
 void vectorPrint(int vet[], int r)
+{
+    cout << "\n";
+    for (int i = 0; i < r; i++)
+    {
+        cout << vet[i] << " ";
+    }
+    cout << "\n";
+}
+
+//funzione di stampa del vettore di tipo stringa
+void stringVectorPrint(string vet[], int r)
 {
     cout << "\n";
     for (int i = 0; i < r; i++)
@@ -208,6 +255,94 @@ void flagBubbleSort(int arr[], int N)
 }
 
 
+
+//bubble sort con sentinella per vettori paralleli
+void flagParallelSort(int arr[], string text[], int N)
+{
+    int support = 0;
+    string strsupport;
+    bool flag = false;
+    int j = 0;
+    do
+    {
+        flag = false;
+
+        for (int i = 0; i < N - 1 - j; i++)
+        {
+            if (arr[i] > arr[i + 1])
+            {
+                flag = true;
+                support = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = support;
+
+                strsupport=text[i];
+                text[i]=text[i+1];
+                text[i+1]=strsupport;
+            }
+        }
+        j++;
+    } while (flag);
+
+}
+
+//bubble sort con sentinella ma inverso
+void inverseFlagBubbleSort(int arr[], int N)
+{
+    int support = 0;
+    bool flag = false;
+    int j = 0;
+    do
+    {
+        flag = false;
+
+        for (int i = 0; i < N - 1 - j; i++)
+        {
+            if (arr[i] <= arr[i + 1])
+            {
+
+                support = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = support;
+                flag = true;
+
+            }
+        }
+        j++;
+    } while (flag);
+
+}
+
+//bubble sort con sentinella per vettori paralleli
+void reverseFlagParallelSort(int arr[], string text[], int N)
+{
+    int support = 0;
+    string strsupport;
+    bool flag = false;
+    int j = 0;
+    do
+    {
+        flag = false;
+
+        for (int i = 0; i < N - 1 - j; i++)
+        {
+            if (arr[i] <= arr[i + 1])
+            {
+                flag = true;
+                support = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = support;
+
+                strsupport=text[i];
+                text[i]=text[i+1];
+                text[i+1]=strsupport;
+            }
+        }
+        j++;
+    } while (flag);
+
+}
+
 //funzione per ordinare un vettore con l'insertion sort
 void insertSort(int V[], int N) {
     int position = 0, neww;
@@ -263,6 +398,7 @@ int  partition(int vet[], int sx, int dx, int r)
     pivot = vet[ipivot];
     while (sx < dx)
     {
+
         while (vet[sx] <= pivot && sx < dx)
         {
             sx++;
@@ -282,7 +418,9 @@ int  partition(int vet[], int sx, int dx, int r)
     return dx;
 }
 
-//funzione di ordinamento quick sort 
+
+
+//funzione di ordinamento quick sort
 void quick_sort(int vet[], int e_sx, int e_dx, int r)
 {
     int pivot;
@@ -296,7 +434,9 @@ void quick_sort(int vet[], int e_sx, int e_dx, int r)
     vectorPrint(vet, r);
 }
 
-//funzione che riorganizza il vettore in base al pivot 
+
+
+//funzione che riorganizza il vettore in base al pivot
 //(destra numeri piu grandi del pivot-sinistra numeri piu piccoli)
 void riorganization_vector(int vet[], int vet2[], int r, int pivot)
 {
@@ -326,7 +466,7 @@ void riorganization_vector(int vet[], int vet2[], int r, int pivot)
 
 
 
-//ricerca lineare di un numero 
+//ricerca lineare di un numero
 int linear_search(int vet[], int n, int r)
 {
     for (int i = 0; i < r; i++)
@@ -339,7 +479,7 @@ int linear_search(int vet[], int n, int r)
     return -1;
 }
 //ricerca binaria di un numero ( modo iterativo )
-int binarySearch_iterativo(int inizio, int fine, int numero, int vet[])
+int binarySearch_iterative(int inizio, int fine, int numero, int vet[])
 {
     while (inizio <= fine)
     {
@@ -362,7 +502,7 @@ int binarySearch_iterativo(int inizio, int fine, int numero, int vet[])
 
 
 //ricerca binaria di un numero ( modo ricorsivo )
-int binarySearch_ricorsivo(int inizio, int fine, int numero, int vet[])
+int binarySearch_recursive(int inizio, int fine, int numero, int vet[])
 {
     if (inizio > fine)
     {
@@ -375,11 +515,11 @@ int binarySearch_ricorsivo(int inizio, int fine, int numero, int vet[])
     }
     else if (numero > vet[media])
     {
-        return binarySearch_ricorsivo(media + 1, fine, numero, vet);
+        return binarySearch_recursive(media + 1, fine, numero, vet);
     }
     else
     {
-        return binarySearch_ricorsivo(inizio, media - 1, numero, vet);
+        return binarySearch_recursive(inizio, media - 1, numero, vet);
     }
 
 }
