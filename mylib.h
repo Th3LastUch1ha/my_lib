@@ -35,7 +35,7 @@ unsigned int vector_cell(int N)
         {
             cout << "\nERRORE:\n troppe celle :";
         }
-    } while (n <= 0 && n > N);
+    } while (n <= 0 || n > N);
     return n;
 }
 
