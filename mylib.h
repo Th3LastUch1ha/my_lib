@@ -1,4 +1,3 @@
-
 /*
                                     --- INDICE: 1) RIEMPIMENTI 2) SWAP, SHIFT e UTILI 3) STAMPE 4) ORDINAMENTI 5) RICERCHE ---
 */
@@ -39,12 +38,30 @@ unsigned int vector_cell(int N)
     return n;
 }
 
+//funzione per la grandezza della matrice
+void matrix_cell(int& r, int& c)
+{
+    do
+    {
+        cout << "inserisci il numero di righe :";
+        cin >> r;
+        cout << "inserisci il numero di colonne :";
+        cin >> c;
+        if ((r <= 0 || r > MAX) || (c <= 0 || c > MAX))
+        {
+            cout << "ERROR:\noverflow\n\n";
+            system("pause");
+            system("CLS");
+        }
+    } while ((r <= 0 || r > MAX) || (c <= 0 || c > MAX));
+}
+
 //funzione di riempimento del vettore con inserimento dell'utente
 void userStuffing(int arr[], int N)
 {
     for (int i = 0; i < N; i++)
     {
-        cin>> arr[i];
+        cin >> arr[i];
     }
 }
 
@@ -53,7 +70,7 @@ void userStringArrStuffing(string arr[], int N)
 {
     for (int i = 0; i < N; i++)
     {
-        getline(cin,arr[i]);
+        getline(cin, arr[i]);
     }
 }
 
@@ -120,23 +137,44 @@ void reverse(int arr[], int N)
 
     int temp;
 
-    for(int i = 0, j = N-1; i < N/2; i++, j--)
-        {
+    for (int i = 0, j = N - 1; i < N / 2; i++, j--)
+    {
 
         temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
 
-        }
+    }
 }
 
 //funzione che addiziona in un terzo array due array paralleli cella per cella
 void sumParallelArray(int arr1[], int arr2[], int sumArr[], int N)
 {
 
-    for(int i=0; i<N; i++)
+    for (int i = 0; i < N; i++)
     {
-        sumArr[i]=arr1[i]+arr2[i];
+        sumArr[i] = arr1[i] + arr2[i];
+    }
+
+}
+
+//funzione per la creazione della tavola di pitagora
+bool multiplication_table(int matrice[MAX][MAX], int r, int c)
+{
+    if (r == c)
+    {
+        for (int i = 0; i < r; i++)
+        {
+            for (int j = 0; j < c; j++)
+            {
+                matrice[i][j] = i * j;
+            }
+        }
+        return true;
+    }
+    else
+    {
+        return false;
     }
 
 }
@@ -200,6 +238,19 @@ void vectorPrintWColoredIndex(int arr[], int r, int index)
         }
     }
     cout << "\n";
+}
+
+//funzione di stampa della matrice
+void matrix_print(int matrice[MAX][MAX], int r, int c)
+{
+    for (int i = 0; i < r; i++)
+    {
+        cout << "\n";
+        for (int j = 0; j < c; j++)
+        {
+            cout << matrice[i][j] << " ";
+        }
+    }
 }
 
 
@@ -277,9 +328,9 @@ void flagParallelSort(int arr[], string text[], int N)
                 arr[i] = arr[i + 1];
                 arr[i + 1] = support;
 
-                strsupport=text[i];
-                text[i]=text[i+1];
-                text[i+1]=strsupport;
+                strsupport = text[i];
+                text[i] = text[i + 1];
+                text[i + 1] = strsupport;
             }
         }
         j++;
@@ -334,9 +385,9 @@ void reverseFlagParallelSort(int arr[], string text[], int N)
                 arr[i] = arr[i + 1];
                 arr[i + 1] = support;
 
-                strsupport=text[i];
-                text[i]=text[i+1];
-                text[i+1]=strsupport;
+                strsupport = text[i];
+                text[i] = text[i + 1];
+                text[i + 1] = strsupport;
             }
         }
         j++;
